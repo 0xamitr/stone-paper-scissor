@@ -62,7 +62,7 @@ function game(){
         let new1 = playRound(playerchoice(), iscomputer());
         if (new1 == 0) computerscore++;
         else if (new1 == 1) playerscore++;
-        else if (new1 == 3){
+        else if (new1 == 2){
             playerscore++;
             computerscore++;
         }
@@ -73,7 +73,7 @@ function game(){
     else if (computerscore > playerscore){
         alert(`Your score : ${playerscore} ; Computer score : ${computerscore} \n You Lose!`);
     }
-    else{
+    else if (computerscore == playerscore){
         alert(`Your score : ${playerscore} ; Computer score : ${computerscore} \n TIE`);
     }
 }
