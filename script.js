@@ -1,8 +1,12 @@
+let playerscore = 0;
+let computerscore = 0;
 
+const player = document.querySelector(".player1");
+const opponent = document.querySelector(".opponent1");
+const result1 = document.querySelector(".div1");
+const result2 = document.querySelector(".div2");
+const finalresult = document.querySelector(".result");
 
-function playerchoice(){
-    return prompt("Enter Stone, Paper, Scissor").toLowerCase();
-}
 function iscomputer(){
     let a = Math.floor(Math.random() * 3);
     if (a == 0){
@@ -19,63 +23,156 @@ function iscomputer(){
 function playRound(player_choice, computerchoice){
     if (player_choice == computerchoice)
     {
-        alert("tie");
-        return 2;
+        if (player_choice == "scissor"){
+            player.innerHTML = `You choose Scissor`;
+            opponent.innerHTML = `Computer choose Scissor`;
+            var x = document.querySelector(".img");
+            x.setAttribute("src", "images/scissor.png");
+            var y = document.querySelector(".img1");
+            y.setAttribute("src", "images/scissor.png");
+        }
+        else if (player_choice == "stone"){
+            player.innerHTML = `You choose Stone`;
+            opponent.innerHTML = `Computer choose Stone`;
+            var x = document.querySelector(".img");
+            x.setAttribute("src", "images/stone.png");
+            var y = document.querySelector(".img1");
+            y.setAttribute("src", "images/stone.png");
+        }
+        else if (player_choice == "paper"){
+            player.innerHTML = `You choose Paper`;
+            opponent.innerHTML = `Computer choose Paper`;
+            var x = document.querySelector(".img");
+            x.setAttribute("src", "images/paper.png");
+            var y = document.querySelector(".img1");
+            y.setAttribute("src", "images/paper.png");
+        }
+        result1.innerHTML = `TIE!`
+        result2.innerHTML =`Your Score : ${playerscore}&emsp;&emsp;Computer Score : ${computerscore}`;
     }
     else if (player_choice == "scissor"){
         if (computerchoice == "stone"){
-            alert("You lose, stone beats scissor");
-            return 0;
+            computerscore++;
+            player.innerHTML = `You choose Scissor`;
+            opponent.innerHTML = `Computer choose Stone`;
+            result1.innerHTML = `Stone beats Scissor`;
+            result2.innerHTML =`Your Score : ${playerscore}&emsp;&emsp;Computer Score : ${computerscore}`;
+            var x = document.querySelector(".img");
+            x.setAttribute("src", "images/scissor.png");
+            var y = document.querySelector(".img1");
+            y.setAttribute("src", "images/stone.png");
         }
         else{
-            alert("You win, scissor beats paper");
-            return 1;
+            playerscore++;
+            player.innerHTML = `You choose Scissor`;
+            opponent.innerHTML = `Computer choose Paper`;
+            var x = document.querySelector(".img");
+            x.setAttribute("src", "images/scissor.png");
+            var y = document.querySelector(".img1");
+            y.setAttribute("src", "images/paper.png");
+            result1.innerHTML = `Scissor beats paper`;
+            result2.innerHTML =`Your Score : ${playerscore}&emsp;&emsp;Computer Score : ${computerscore}`;
         }
     }
     else if (player_choice == "stone"){
         if (computerchoice == "paper"){
-            alert("You lose, paper beats stone");
-            return 0;
+            computerscore++;
+            player.innerHTML = `You choose Stone`;
+            opponent.innerHTML = `Computer choose Paper`;
+            var x = document.querySelector(".img");
+            x.setAttribute("src", "images/stone.png");
+            var y = document.querySelector(".img1");
+            y.setAttribute("src", "images/paper.png");
+            result1.innerHTML = `Paper beats Stone`;
+            result2.innerHTML =`Your Score : ${playerscore}&emsp;&emsp;Computer Score : ${computerscore}`;
         }
         else{
-            alert("You win, scissor beats paper");
-            return 1;
+            playerscore++;
+            player.innerHTML = `You choose Stone`;
+            opponent.innerHTML = `Computer choose Scissor`;
+            var x = document.createElement("IMG");
+            var x = document.querySelector(".img");
+            x.setAttribute("src", "images/stone.png");
+            var y = document.querySelector(".img1");
+            y.setAttribute("src", "images/scissor.png");
+            result1.innerHTML = `Scissor beats Paper`;
+            result2.innerHTML =`Your Score : ${playerscore}&emsp;&emsp;Computer Score : ${computerscore}`;
         }
     }
     else if (player_choice == "paper"){
         if (computerchoice == "scissor"){
-            alert("You lose, scissor beats paper");
-            return 0;
+            computerscore++;
+            player.innerHTML = `You choose Paper`;
+            opponent.innerHTML = `Computer choose Scissor`;
+            var x = document.querySelector(".img");
+            x.setAttribute("src", "images/paper.png");
+            var y = document.querySelector(".img1");
+            y.setAttribute("src", "images/scissor.png");
+            result1.innerHTML = `Scissor beats Paper`;
+            result2.innerHTML =`Your Score : ${playerscore}&emsp;&emsp;Computer Score : ${computerscore}`;
         }
         else{
-            alert("You win, paper beats stone");
-            return 1;
+            playerscore++;
+            player.innerHTML = `You choose Paper`;
+            opponent.innerHTML = `Computer choose Stone`;
+            var x = document.querySelector(".img");
+            x.setAttribute("src", "images/paper.png");
+            var y = document.querySelector(".img1");
+            y.setAttribute("src", "images/stone.png");
+            result1.innerHTML = `Paper beats Stone`;
+            result2.innerHTML =`Your Score : ${playerscore}&emsp;&emsp;Computer Score : ${computerscore}`;
         }
+    }
+
+    if(playerscore == 5 && computerscore == 5){
+        finalresult.innerHTML =`!!!!!!!!! TIE !!!!!!!!!`
+        result2.innerHTML =`Your Score : ${playerscore}&emsp;&emsp;Computer Score : ${computerscore}`;
+        return 3;
+    }
+    if (playerscore == 5){
+        finalresult.innerHTML =`!!!!!!!!! YOU WIN !!!!!!!!!`;
+        result2.innerHTML =`Your Score : ${playerscore}&emsp;&emsp;Computer Score : ${computerscore}`;
+        return 3;
+    }
+    else if(computerscore == 5){
+        finalresult.innerHTML =`!!!!!!!!! YOU LOSE !!!!!!!!!`;
+        result2.innerHTML =`Your Score : ${playerscore}&emsp;&emsp;Computer Score : ${computerscore}`;
+        return 3;
     }
     return 3;
 }
 
-function game(){
-    let playerscore = 0;
-    let computerscore = 0;
-    for (let i = 0; i < 3; i++){
-        let new1 = playRound(playerchoice(), iscomputer());
-        if (new1 == 0) computerscore++;
-        else if (new1 == 1) playerscore++;
-        else if (new1 == 2){
-            playerscore++;
-            computerscore++;
-        }
-    }
-    if (playerscore > computerscore){
-        alert(`Your score : ${playerscore} ; Computer score : ${computerscore} \n You win!`);
-    }
-    else if (computerscore > playerscore){
-        alert(`Your score : ${playerscore} ; Computer score : ${computerscore} \n You Lose!`);
-    }
-    else if (computerscore == playerscore){
-        alert(`Your score : ${playerscore} ; Computer score : ${computerscore} \n TIE`);
-    }
-}
+const stone = document.querySelector(".stone");
+const paper = document.querySelector('.paper');
+const scissor = document.querySelector('.scissor');
 
-game();
+stone.addEventListener("click", () => {
+    if(playerscore < 5 && computerscore < 5){
+        playRound("stone", iscomputer());
+    }
+});
+paper.addEventListener("click", () => {
+    if(playerscore < 5 && computerscore < 5){
+        playRound("paper", iscomputer());
+    }
+});
+scissor.addEventListener("click", () => {
+    if(playerscore < 5 && computerscore < 5){
+        playRound("scissor", iscomputer());
+    }
+});
+
+const again = document.querySelector(".button2 > button");
+again.addEventListener('click', () => {
+    result1.innerHTML =``;
+    result2.innerHTML =``;
+    player.innerHTML = ``;
+    opponent.innerHTML = ``;
+    finalresult.innerHTML =``;
+    var x = document.querySelector(".img");
+    var y = document.querySelector(".img1");
+    x.setAttribute("src", "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==");
+    y.setAttribute("src", "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==");
+    computerscore = 0;
+    playerscore = 0;
+});
