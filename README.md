@@ -1,1 +1,1 @@
-# stone-paper-scissor
+https://amit-rathore0.github.io/stone-paper-scissor/
