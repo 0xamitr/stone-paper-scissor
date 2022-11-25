@@ -6,6 +6,7 @@ body{
     justify-content: space-between;
     height: 100vh;
     background-image: url(images/bg.png);
+    width: 100%;
 }
 
 .body{
@@ -68,6 +69,7 @@ p{
 
 
 h1{
+    /* width: 100vh; */
     margin-top: 5px;
     display: flex;
     justify-content: center;
