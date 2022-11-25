@@ -90,7 +90,6 @@ function playRound(player_choice, computerchoice){
             playerscore++;
             player.innerHTML = `You choose Stone`;
             opponent.innerHTML = `Computer choose Scissor`;
-            var x = document.createElement("IMG");
             var x = document.querySelector(".img");
             x.setAttribute("src", "images/stone.png");
             var y = document.querySelector(".img1");
@@ -124,8 +123,9 @@ function playRound(player_choice, computerchoice){
         }
     }
 
+
     if(playerscore == 5 && computerscore == 5){
-        finalresult.innerHTML =`!!!!!!!!! TIE !!!!!!!!!`
+        finalresult.innerHTML =`!!!!!!!!! TIE !!!!!!!!!`;
         result2.innerHTML =`Your Score : ${playerscore}&emsp;&emsp;Computer Score : ${computerscore}`;
         return 3;
     }
