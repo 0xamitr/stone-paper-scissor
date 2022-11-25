@@ -11,7 +11,7 @@ body{
 
 .body{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -69,7 +69,6 @@ p{
 
 
 h1{
-    /* width: 100vh; */
     margin-top: 5px;
     display: flex;
     justify-content: center;
