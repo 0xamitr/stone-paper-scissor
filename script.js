@@ -6,7 +6,15 @@ const opponent = document.querySelector(".opponent1");
 const result1 = document.querySelector(".div1");
 const result2 = document.querySelector(".div2");
 const finalresult = document.querySelector(".result");
+const next = document.querySelector(".nxt");
 
+if (next != null){
+    next.addEventListener("click", () => {
+        let input = document.querySelector(".input").value;
+        let inpu = input.charAt(0).toUpperCase() + input.slice(1);
+        localStorage.setItem('inp', inpu);
+    });
+}
 function iscomputer(){
     let a = Math.floor(Math.random() * 3);
     if (a == 0){
@@ -20,7 +28,9 @@ function iscomputer(){
     }
 }
 
+
 function playRound(player_choice, computerchoice){
+    const input1 = localStorage.getItem('inp');
     if (player_choice == computerchoice)
     {
         if (player_choice == "scissor"){
@@ -48,7 +58,7 @@ function playRound(player_choice, computerchoice){
             y.setAttribute("src", "images/paper.png");
         }
         result1.innerHTML = `TIE!`
-        result2.innerHTML =`Your Score : ${playerscore}&emsp;&emsp;Computer Score : ${computerscore}`;
+        result2.innerHTML =`${input1} : ${playerscore}&emsp;&emsp;Computer : ${computerscore}`;
     }
     else if (player_choice == "scissor"){
         if (computerchoice == "stone"){
@@ -56,7 +66,7 @@ function playRound(player_choice, computerchoice){
             player.innerHTML = `You choose Scissor`;
             opponent.innerHTML = `Computer choose Stone`;
             result1.innerHTML = `Stone beats Scissor`;
-            result2.innerHTML =`Your Score : ${playerscore}&emsp;&emsp;Computer Score : ${computerscore}`;
+            result2.innerHTML =`${input1} : ${playerscore}&emsp;&emsp;Computer : ${computerscore}`;
             var x = document.querySelector(".img");
             x.setAttribute("src", "images/scissor.png");
             var y = document.querySelector(".img1");
@@ -71,7 +81,7 @@ function playRound(player_choice, computerchoice){
             var y = document.querySelector(".img1");
             y.setAttribute("src", "images/paper.png");
             result1.innerHTML = `Scissor beats paper`;
-            result2.innerHTML =`Your Score : ${playerscore}&emsp;&emsp;Computer Score : ${computerscore}`;
+            result2.innerHTML =`${input1} : ${playerscore}&emsp;&emsp;Computer : ${computerscore}`;
         }
     }
     else if (player_choice == "stone"){
@@ -84,7 +94,7 @@ function playRound(player_choice, computerchoice){
             var y = document.querySelector(".img1");
             y.setAttribute("src", "images/paper.png");
             result1.innerHTML = `Paper beats Stone`;
-            result2.innerHTML =`Your Score : ${playerscore}&emsp;&emsp;Computer Score : ${computerscore}`;
+            result2.innerHTML =`${input1} : ${playerscore}&emsp;&emsp;Computer : ${computerscore}`;
         }
         else{
             playerscore++;
@@ -95,7 +105,7 @@ function playRound(player_choice, computerchoice){
             var y = document.querySelector(".img1");
             y.setAttribute("src", "images/scissor.png");
             result1.innerHTML = `Scissor beats Paper`;
-            result2.innerHTML =`Your Score : ${playerscore}&emsp;&emsp;Computer Score : ${computerscore}`;
+            result2.innerHTML =`${input1} : ${playerscore}&emsp;&emsp;Computer : ${computerscore}`;
         }
     }
     else if (player_choice == "paper"){
@@ -108,7 +118,7 @@ function playRound(player_choice, computerchoice){
             var y = document.querySelector(".img1");
             y.setAttribute("src", "images/scissor.png");
             result1.innerHTML = `Scissor beats Paper`;
-            result2.innerHTML =`Your Score : ${playerscore}&emsp;&emsp;Computer Score : ${computerscore}`;
+            result2.innerHTML =`${input1} : ${playerscore}&emsp;&emsp;Computer : ${computerscore}`;
         }
         else{
             playerscore++;
@@ -119,24 +129,24 @@ function playRound(player_choice, computerchoice){
             var y = document.querySelector(".img1");
             y.setAttribute("src", "images/stone.png");
             result1.innerHTML = `Paper beats Stone`;
-            result2.innerHTML =`Your Score : ${playerscore}&emsp;&emsp;Computer Score : ${computerscore}`;
+            result2.innerHTML =`${input1} : ${playerscore}&emsp;&emsp;Computer : ${computerscore}`;
         }
     }
 
 
     if(playerscore == 5 && computerscore == 5){
         finalresult.innerHTML =`!!!!!!!!! TIE !!!!!!!!!`;
-        result2.innerHTML =`Your Score : ${playerscore}&emsp;&emsp;Computer Score : ${computerscore}`;
+        result2.innerHTML =`${input1} : ${playerscore}&emsp;&emsp;Computer : ${computerscore}`;
         return 3;
     }
     if (playerscore == 5){
-        finalresult.innerHTML =`!!!!!!!!! YOU WIN !!!!!!!!!`;
-        result2.innerHTML =`Your Score : ${playerscore}&emsp;&emsp;Computer Score : ${computerscore}`;
+        finalresult.innerHTML =`VICTORY, ${input1} won against the computer`;
+        result2.innerHTML =`${input1} : ${playerscore}&emsp;&emsp;Computer : ${computerscore}`;
         return 3;
     }
     else if(computerscore == 5){
-        finalresult.innerHTML =`!!!!!!!!! YOU LOSE !!!!!!!!!`;
-        result2.innerHTML =`Your Score : ${playerscore}&emsp;&emsp;Computer Score : ${computerscore}`;
+        finalresult.innerHTML =`DEFEAT, ${input1} lost against the computer`;
+        result2.innerHTML =`${input1} : ${playerscore}&emsp;&emsp;Computer : ${computerscore}`;
         return 3;
     }
     return 3;
@@ -146,33 +156,43 @@ const stone = document.querySelector(".stone");
 const paper = document.querySelector('.paper');
 const scissor = document.querySelector('.scissor');
 
-stone.addEventListener("click", () => {
-    if(playerscore < 5 && computerscore < 5){
-        playRound("stone", iscomputer());
-    }
-});
-paper.addEventListener("click", () => {
-    if(playerscore < 5 && computerscore < 5){
-        playRound("paper", iscomputer());
-    }
-});
-scissor.addEventListener("click", () => {
-    if(playerscore < 5 && computerscore < 5){
-        playRound("scissor", iscomputer());
-    }
-});
+if (stone != null){
+    stone.addEventListener("click", () => {
+        if(playerscore < 5 && computerscore < 5){
+            playRound("stone", iscomputer());
+        }
+    });
+}
+
+if (paper != null){
+    paper.addEventListener("click", () => {
+        if(playerscore < 5 && computerscore < 5){
+            playRound("paper", iscomputer());
+        }
+    });
+}
+
+if (scissor != null){
+    scissor.addEventListener("click", () => {
+        if(playerscore < 5 && computerscore < 5){
+            playRound("scissor", iscomputer());
+        }
+    });
+}
 
 const again = document.querySelector(".button2 > button");
-again.addEventListener('click', () => {
-    result1.innerHTML =``;
-    result2.innerHTML =``;
-    player.innerHTML = ``;
-    opponent.innerHTML = ``;
-    finalresult.innerHTML =``;
-    var x = document.querySelector(".img");
-    var y = document.querySelector(".img1");
-    x.setAttribute("src", "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==");
-    y.setAttribute("src", "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==");
-    computerscore = 0;
-    playerscore = 0;
-});
+if (again != null){
+    again.addEventListener('click', () => {
+        result1.innerHTML =``;
+        result2.innerHTML =``;
+        player.innerHTML = ``;
+        opponent.innerHTML = ``;
+        finalresult.innerHTML =``;
+        var x = document.querySelector(".img");
+        var y = document.querySelector(".img1");
+        x.setAttribute("src", "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==");
+        y.setAttribute("src", "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==");
+        computerscore = 0;
+        playerscore = 0;
+    });
+}
