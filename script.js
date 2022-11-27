@@ -1,13 +1,11 @@
 let playerscore = 0;
 let computerscore = 0;
-
 const player = document.querySelector(".player1");
 const opponent = document.querySelector(".opponent1");
 const result1 = document.querySelector(".div1");
 const result2 = document.querySelector(".div2");
 const finalresult = document.querySelector(".result");
 const next = document.querySelector(".nxt");
-
 if (next != null){
     next.addEventListener("click", () => {
         let input = document.querySelector(".input").value;
@@ -27,8 +25,6 @@ function iscomputer(){
         return ("paper");
     }
 }
-
-
 function playRound(player_choice, computerchoice){
     const input1 = localStorage.getItem('inp');
     if (player_choice == computerchoice)
